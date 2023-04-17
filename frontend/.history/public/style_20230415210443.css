@@ -1,0 +1,15 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'montserrat', sans-serif;
+}
+
+body {
+	background: #EEE;
+	color: #313154;
+
+}
+h2{
+    color: #313154;
+}

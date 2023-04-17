@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+    <!-- CSS import -->
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+
+    <!-- Set font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Greeting -->
+    <section class="greeting">
+      <h2>What's the plan for today?</h2>
+    </section>
+
+
+    <!-- New Todo -->
+    <section class="create-todo">
+      <form action="/addTask" method="POST">
+        
+        <label for="taskName">Task Name:</label>
+        <input type="text" placeholder="Please enter your task name" id="taskName" name="taskName" required><br><br>
+
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" name="dueDate" required><br><br>
+
+        <label for="category">Pick a category:</label>
+        <!-- <select id="category" name="category">
+          <option value="Personal">Personal</option>
+          <option value="Academic">Academic</option>
+          <option value="Work">Work</option>
+        </select><br><br> -->
+        <div class="category">
+					<label>
+						<input type="radio" name="category" id="category1" value="Academic" /> 
+						<span class="bubble academic"></span>
+						<div>Academic</div>
+					</label>
+					<label>
+						<input type="radio" name="category" id="category2" value="Personal" />
+						<span class="bubble personal"></span>
+						<div>Personal</div>
+					</label>
+          <label>
+						<input type="radio" name="category" id="category3" value="Work" />
+						<span class="bubble work"></span>
+						<div>Work</div>
+					</label>
+				</div>       
+
+        <input type="submit" value="Add Task">
+
+      </form>
+    </section>
+    <!-- Display todo list -->
+    <section class="todo-list">
+      <% if (tasks.length === 0) { %>
+        <p>No tasks yet!</p>
+      <% } else { %>
+        <table>
+          <tr>
+            <th>Task Name</th>
+            <th>Due Date</th>
+            <th>Category</th>
+            <th>Edit</th>
+          </tr>
+          <% for (let i = 0; i < tasks.length; i++) { %>
+            <tr>
+              <td><%= tasks[i].name %></td>
+              <td><%= tasks[i].due %></td>
+              <td><%= tasks[i].category %></td>
+              <td>
+                <form action="/editTask/<%= i %>" method="POST">
+                  <input type="text" name="taskName" value="<%= tasks[i].name %>" required>
+                  <input type="date" name="dueDate" value="<%= tasks[i].due %>" required>
+                  <input type="submit" value="Edit">
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </table>
+      <% } %>
+    </section>
+  </body>
+</html>

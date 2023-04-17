@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+  </head>
+  <body>
+    <h1>What's the plan for today?</h1>
+    <form action="/addTask" method="POST">
+      <label for="taskName">Task Name:</label>
+      <input type="text" id="taskName" name="taskName" required><br><br>
+
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" name="dueDate" required><br><br>
+
+      <label for="category">Category:</label>
+      <select id="category" name="category">
+        <option value="Personal">Personal</option>
+        <option value="Academic">Academic</option>
+        <option value="Work">Work</option>
+      </select><br><br>
+
+      <input type="submit" value="Add Task">
+    </form>
+
+    <% if (tasks.length === 0) { %>
+      <p>No tasks yet!</p>
+    <% } else { %>
+      <table>
+        <tr>
+          <th>Task Name</th>
+          <th>Due Date</th>
+          <th>Category</th>
+          <th>Edit</th>
+        </tr>
+        <% for (let i = 0; i < tasks.length; i++) { %>
+          <tr>
+            <td><%= tasks[i].name %></td>
+            <td><%= tasks[i].due %></td>
+            <td><%= tasks[i].category %></td>
+            <td>
+              <form action="/editTask/<%= i %>" method="POST">
+                <input type="text" name="taskName" value="<%= tasks[i].name %>" required>
+                <input type="date" name="dueDate" value="<%= tasks[i].due %>" required>
+                <input type="submit" value="Edit">
+              </form>
+            </td>
+          </tr>
+        <% } %>
+      </table>
+    <% } %>
+  </body>
+</html>

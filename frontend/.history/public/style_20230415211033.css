@@ -1,0 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'montserrat', sans-serif;
+}
+
+body {
+	background: #EEE;
+	color: #313154;
+
+}
+section {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+h2{
+    color: #313154;
+}
