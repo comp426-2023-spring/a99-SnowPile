@@ -1,0 +1,16 @@
+<!-- This page displays the user's personal information and the function of changing the password -->
+
+<h1>Welcome, <%= user.username %>!</h1>
+<p>Email: <%= user.email %></p>
+<p>You have <%= tasks.length %> tasks.</p>
+
+<h2>Do you want to change your password?</h2>
+<form action="/change-password" method="POST">
+    <label for="current-password">Current Password:</label>
+    <input type="password" id="current-password" name="currentPassword">
+    
+    <label for="new-password">New Password:</label>
+    <input type="password" id="new-password" name="newPassword">
+    
+    <button type="submit">Change Password</button>
+  </form>
