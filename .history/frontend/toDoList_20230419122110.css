@@ -65,7 +65,7 @@ h2{
 
 .create-todo .category {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(auto-fill, minmax(calc(100%/4), calc(100%/7)));
 	grid-gap: 1rem;
 	margin-bottom: 1.5rem;
 }
@@ -81,7 +81,6 @@ h2{
 	border-radius: 0.5rem;
 	cursor: pointer;
 }
-
 
 .create-todo input[type="submit"]:hover {
 	opacity: 0.75;
