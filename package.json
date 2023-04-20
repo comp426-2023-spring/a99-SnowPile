@@ -2,19 +2,19 @@
   "name": "a99-snowpile",
   "version": "1.0.0",
   "description": "Create a to do list app",
-  "main": "index.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./backend/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/comp426-2023-spring/a99-SnowPile.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/comp426-2023-spring/a99-SnowPile/issues"
   },
