@@ -1,79 +1,87 @@
-// Define app using express
-var express = require("express")
-var app = express()
-// Require database SCRIPT file
-const db = require("./database.js")
-// Require md5 MODULE
-//var md5 = require("md5")
-// Make Express use its own built-in body parser for both urlencoded and JSON body data.
-app.use(express.urlencoded({ extended: true }));
+const express = require("express");
+const sqlite3 = require("sqlite3").verbose();
+const md5 = require("md5");
+
+const app = express();
+
+const DBSOURCE = "db.sqlite";
+const db = new sqlite3.Database(DBSOURCE, (err) => {
+  if (err) {
+    console.error(err.message);
+    throw err;
+  } else {
+    console.log("Connected to the SQLite database.");
+    db.run(
+      `CREATE TABLE IF NOT EXISTS user (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT, 
+        email TEXT UNIQUE, 
+        password TEXT
+      )`,
+      (err) => {
+        if (err) {
+          console.error(err.message);
+        } else {
+          console.log("User table created successfully.");
+        }
+      }
+    );
+
+    db.run(
+      `CREATE TABLE IF NOT EXISTS task_list (
+        task_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        task_title TEXT NOT NULL,
+        user_id INTEGER NOT NULL,
+        task_due_date DATETIME, 
+        task_status TEXT NOT NULL, 
+        task_description TEXT,
+        category_id INTEGER NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES user(id),
+        FOREIGN KEY (category_id) REFERENCES category(id)
+      )`,
+      (err) => {
+        if (err) {
+          console.error(err.message);
+        } else {
+          console.log("Task list table created successfully.");
+        }
+      }
+    );
+  }
+});
+
+// Enable JSON request body parsing
 app.use(express.json());
 
-// Server port
-var HTTP_PORT = 5000 
-// Start server
-const server = app.listen(HTTP_PORT, () => {
-    console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
-});
-// READ (HTTP method GET) at root endpoint /app/
-app.get("/app/", (req, res, next) => {
-    res.json({"message":"Your API works! (200)"});
-	res.status(200);
-});
+// Add a new user
+app.post("/users", (req, res) => {
+  const { name, email, password } = req.body;
+  const hashedPassword = md5(password);
 
-// Define other CRUD API endpoints using express.js and better-sqlite3
-// CREATE a new user (HTTP method POST) at endpoint /app/new/
-app.post("/app/new/user", (req, res, next) => {
-    let data = {
-        user: req.body.username,
-        pass: req.body.password
+  const insertUser = "INSERT INTO user (name, email, password) VALUES (?,?,?)";
+  db.run(insertUser, [name, email, hashedPassword], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).json({ error: "Failed to add user" });
+    } else {
+      console.log(`User ${this.lastID} added successfully`);
+      res.status(201).json({ id: this.lastID });
     }
-    const stmt = db.prepare('INSERT INTO userinfo (username, password) VALUES (?, ?)')
-    const info = stmt.run(data.user, data.pass)
-    res.status(200).json(info)
+  });
 });
-// READ a list of users (HTTP method GET) at endpoint /app/users/
-app.get("/app/users", (req, res) => {	
-    try {
-        const stmt = db.prepare('SELECT * FROM userinfo').all()
-        res.status(200).json(stmt)
-    } catch {
-        console.error(e)
+
+// Get all users
+app.get("/users", (req, res) => {
+  db.all("SELECT * FROM user", (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).json({ error: "Failed to retrieve users" });
+    } else {
+      res.status(200).json(rows);
     }
+  });
 });
-
-// READ a single user (HTTP method GET) at endpoint /app/user/:id
-app.get("/app/user/:id", (req, res) => {
-    try {
-        const stmt = db.prepare('SELECT * FROM userinfo WHERE id = ?').get(req.params.id);
-        res.status(200).json(stmt)
-    } catch (e) {
-        console.error(e)
-    }
-
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });
-
-// UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
-app.patch("/app/update/user/:id", (req, res) => {
-    let data = {
-        user: req.body.username,
-        pass: req.body.password
-    }
-    const stmt = db.prepare('UPDATE userinfo SET username = COALESCE(?,username), password = COALESCE(?,password) WHERE id = ?')
-    const info = stmt.run(data.user, data.pass, req.params.id)
-    res.status(200).json(info)
-});
-
-// DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
-app.delete("/app/delete/user/:id", (req, res) => {
-    const stmt = db.prepare('DELETE FROM userinfo WHERE id = ?')
-    const info = stmt.run(req.params.id)
-    res.status(200).json(info)
-});
-// Default response for any other request
-app.use(function(req, res){
-	res.json({"message":"Endpoint not found. (404)"});
-    res.status(404);
-});
-
-process.on('SIGTERM', (
