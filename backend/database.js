@@ -11,11 +11,30 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
   } else {
     console.log("Connected to the SQLite database.");
 
+    db.run(`
+      CREATE TABLE log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        timestamp TEXT NOT NULL,
+        message TEXT NOT NULL
+      )
+    `);
+
+    function logMessage(message) {
+      const timestamp = new Date().toISOString();
+      const insertLog = "INSERT INTO log (timestamp, message) VALUES (?,?)";
+      db.run(insertLog, [timestamp, message], (err) => {
+        if (err) {
+          console.error(err.message);
+        }
+      });
+    }
+
+    logMessage("Database connection established.");
+
     db.run(
       `CREATE TABLE user (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT, 
-        email TEXT UNIQUE, 
+        username TEXT UNIQUE, 
         password TEXT
     )`,
       (err) => {
@@ -24,26 +43,14 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         } else {
           // Table just created, creating some rows
           var insertUser =
-            "INSERT INTO user (name, email, password) VALUES (?,?,?)";
-          db.run(insertUser, ["amy", "amy@example.com", md5("amy123456")]);
-          db.run(insertUser, ["bob", "bob@example.com", md5("bob123456")]);
-          db.run(insertUser, [
-            "carol",
-            "carol@example.com",
-            md5("carol123456"),
-          ]);
-          db.run(insertUser, ["dave", "dave@example.com", md5("dave123456")]);
-          db.run(insertUser, ["emma", "emma@example.com", md5("emma123456")]);
-          db.run(insertUser, [
-            "frank",
-            "frank@example.com",
-            md5("frank123456"),
-          ]);
-          db.run(insertUser, [
-            "grace",
-            "grace@example.com",
-            md5("grace123456"),
-          ]);
+            "INSERT INTO user (username,  password) VALUES (?,?)";
+          db.run(insertUser, ["amy", md5("amy123456")]);
+          db.run(insertUser, ["bob", md5("bob123456")]);
+          db.run(insertUser, ["carol", md5("carol123456")]);
+          db.run(insertUser, ["dave", md5("dave123456")]);
+          db.run(insertUser, ["emma", md5("emma123456")]);
+          db.run(insertUser, ["frank", md5("frank123456")]);
+          db.run(insertUser, ["grace", md5("grace123456")]);
         }
       }
     );
