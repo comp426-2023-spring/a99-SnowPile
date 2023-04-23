@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    <% if (currentUser) { %>
+      <p>Welcome, <%= currentUser.username %>!</p>
+      <form action="/todo/add-task" method="POST">
+        <input type="text" name="task" placeholder="Enter task description" required>
+        <button type="submit">Add Task</button>
+      </form>
+      <ul>
+        <% todos.forEach((todo) => { %>
+          <li>
+            <%= todo.task %>
+            <form action="/todo/delete-task" method="POST" style="display:inline-block;">
+              <input type="hidden" name="taskId" value="<%= todo.id %>">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }); %>
+      </ul>
+      <form action="/auth/logout" method="POST">
+        <button type="submit" onclick="location.href='/auth/login'; return false;">Log Out</button>
+      </form>
+    <% } else { %>
+      <p>Please log in to view your to-do list.</p>
+      <a href="/auth/login">Log In</a>
+    <% } %>
+  </body>
+</html>
