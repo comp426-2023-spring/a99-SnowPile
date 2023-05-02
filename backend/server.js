@@ -1,14 +1,19 @@
 // Define app using express
 var express = require("express")
 var app = express()
+const sqlite = require('better-sqlite3');
+
 // Require database SCRIPT file
-const db = require("./database.js")
+//const db = require("./database.js")
+const db = new sqlite('../db.sqlite');
 const path = require('path');
 const ejs = require('ejs')
 app.set('view engine', 'ejs');
 const authRouter = require('./auth.js');
 const todoRouter = require('./todo.js');
-const createTables = require('./create-tables.js');
+//const createTables = require('./create-tables.js');
+const createTables = require('./database.js');
+// {createTables} from './database.js'
 const middlewares = require('./middlewares.js');
 const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
