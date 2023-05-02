@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const sqlite = require('better-sqlite3');
-const db = new sqlite('./database.js');
+const db = new sqlite('../db.sqlite');
 
 router.get('/', (req, res) => {
-  const todos = db.prepare('SELECT * FROM todos WHERE user_id = ?').all(req.session.userId);
+  const todos = db.prepare('SELECT * FROM task_list WHERE user_id = ?').all(req.session.userId);
 
-  res.render('todo', { todos, currentUser: res.locals.currentUser });
+  res.render('../frontend/index.ejs', { todos, currentUser: res.locals.currentUser });
 });
 
 router.post('/add-task', (req, res) => {
   const { task } = req.body;
 
-  db.prepare('INSERT INTO todos (user_id, task, description, completed) VALUES (?, ?, ?, ?)').run(req.session.userId, task, '', 0);
+  db.prepare('INSERT INTO task_list (user_id, task, description, completed) VALUES (?, ?, ?, ?)').run(req.session.userId, task, '', 0);
 
   res.redirect('/todo');
 });
@@ -20,7 +20,7 @@ router.post('/add-task', (req, res) => {
 router.post('/delete-task', (req, res) => {
   const { taskId } = req.body;
 
-  db.prepare('DELETE FROM todos WHERE id = ? AND user_id = ?').run(taskId, req.session.userId);
+  db.prepare('DELETE FROM task_list WHERE id = ? AND user_id = ?').run(taskId, req.session.userId);
 
   res.redirect('/todo');
 });
