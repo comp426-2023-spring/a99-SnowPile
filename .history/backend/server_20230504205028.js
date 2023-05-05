@@ -21,7 +21,8 @@ const SQLiteStore = require('connect-sqlite3')(session);
 
 app.get('/', function(req, res) {
   res.render('login');
-
+  
+//   res.render('index', { tasks });
 });
 
 // parse form data middleware
