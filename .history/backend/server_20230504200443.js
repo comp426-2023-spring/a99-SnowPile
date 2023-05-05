@@ -22,7 +22,7 @@ const SQLiteStore = require('connect-sqlite3')(session);
 app.get('/', function(req, res) {
 //   res.render('login');
   // for test
-  res.render('index', { tasks });
+  res.render('index');
 });
 
 // parse form data middleware
@@ -144,6 +144,3 @@ const tasks = [
       category: 'Fitness',
     },
   ];
-
-  //for css
-  app.use('/public-styles', express.static(path.join(__dirname, 'public-styles'), { type: 'text/css' }));

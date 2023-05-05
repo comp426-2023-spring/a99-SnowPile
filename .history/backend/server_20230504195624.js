@@ -22,7 +22,7 @@ const SQLiteStore = require('connect-sqlite3')(session);
 app.get('/', function(req, res) {
 //   res.render('login');
   // for test
-  res.render('index', { tasks });
+  res.render('todotest');
 });
 
 // parse form data middleware
@@ -120,30 +120,3 @@ app.delete("/app/delete/user/:id", (req, res) => {
 //    res.status(404);
 //});
 // set up routers
-
-
-
-//fake data for testing
-const tasks = [
-    {
-      _id: 1,
-      title: 'Buy groceries',
-      dueDate: new Date('2023-05-10'),
-      category: 'Shopping',
-    },
-    {
-      _id: 2,
-      title: 'Finish project',
-      dueDate: new Date('2023-05-15'),
-      category: 'Work',
-    },
-    {
-      _id: 3,
-      title: 'Go for a run',
-      dueDate: new Date('2023-05-06'),
-      category: 'Fitness',
-    },
-  ];
-
-  //for css
-  app.use('/public-styles', express.static(path.join(__dirname, 'public-styles'), { type: 'text/css' }));

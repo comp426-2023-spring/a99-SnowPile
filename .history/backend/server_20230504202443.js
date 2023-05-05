@@ -145,5 +145,6 @@ const tasks = [
     },
   ];
 
-  //for css
-  app.use('/public-styles', express.static(path.join(__dirname, 'public-styles'), { type: 'text/css' }));
+  //for index.css
+  app.use(express.static('public'));
+  

@@ -3,7 +3,7 @@
   <head>
     <title>Todo List App - SnowPile</title>
     <!-- CSS import -->
-    <link rel="stylesheet"  type="text/css" href="/todolist.css"/>
+    <link rel="stylesheet" type="text/css" href="/toDoList.css"/>
 
     <!-- Set font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,50 +70,9 @@
         <input type="submit" value="Add Task">
 
       </form>
-
     </section>
     <!-- Display todo list -->
-    <section class="todo-list">
-      <h2>YOUR TODO LIST</h2>
-        <% if (tasks.length === 0) { %>
-        <p>No tasks yet!</p>
-        <% } else { %>
-            <table>
-            <thead>
-                <tr>
-                <th>Title</th>
-                <th>Due Date</th>
-                <th>Category</th>
-                <th>Edit</th>
-                <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for(var i=0; i<tasks.length;i++) { %>
-                <tr>
-                    <td><%= tasks[i].title %></td>
-                    <td><%= tasks[i].dueDate.toDateString() %></td>
-                    <td><%= tasks[i].category %></td>
-                    <td><button onclick="showEditForm(<%= i %>)">Edit</button></td>
-                    <form id="edit-form-<%= i %>" style="display:none;" action="/editTask/<%= tasks[i]._id %>" method="POST">
-                        <input type="text" name="taskName" value="<%= tasks[i].name %>" required>
-                        <input type="date" name="dueDate" value="<%= tasks[i].due %>" required>
-                        <input type="submit" value="Save">
-                      </form>
-                    <td><button>Delete</button></td>
-                </tr>
-                <% }; %>
-            </tbody>
-            </table>
-            <script>
-                function showEditForm(i) {
-                  $("#edit-form-"+i).toggle();
-                }
-            </script>
-        <% } %>
-
  
-    </section>
   </body>
 </html>
 
