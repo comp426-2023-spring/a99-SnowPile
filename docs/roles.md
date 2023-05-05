@@ -2,10 +2,11 @@
 
 Responsibilities
 Front End - Sojin and Ziqiao
--Login pages (Sojin): requiring users to log in to enter the todo list.
--Registration pages (Sojin): providing users with the ability to register.
--Todo List page (Ziqiao): allowing users to add, view, modify, and delete tasks.
--Profile page (Ziqiao): allowing users to view their information and change their password.
+
+- Login pages (Sojin): requiring users to log in to enter the todo list.
+- Registration pages (Sojin): providing users with the ability to register.
+- Todo List page (Ziqiao): allowing users to add, view, modify, and delete tasks.
+- Profile page (Ziqiao): allowing users to view their information and change their password.
 
 Back End - Bryan
 Designing and implementing the application's API that allow front-end users to perform various operations such as adding, deleting, and updating tasks, etc.
