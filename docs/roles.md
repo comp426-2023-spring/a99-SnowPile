@@ -1,5 +1,7 @@
 # Team assignment
 
+This file denotes the team assignments to the various roles for this project.  
+
 **Responsibilities**  
 
 Front End - Sojin and Ziqiao
