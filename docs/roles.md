@@ -1,6 +1,6 @@
 # Team assignment
 
-*Responsibilities*  
+**Responsibilities**  
 
 Front End - Sojin and Ziqiao
 - Login pages (Sojin): requiring users to log in to enter the todo list.
@@ -17,7 +17,7 @@ Database - Zhidi
 - Design and implement the database structure and architecture based on the requirements and functionality of the application, including table design, relationship establishment, etc., to ensure effective data storage and management.
 
 
-*Other Roles*
+**Other Roles**
 - Review Manager - All team members  
 The review manager will be responsible for reviewing pull requests, approving or rejecting them, and managing related discussions.
 
