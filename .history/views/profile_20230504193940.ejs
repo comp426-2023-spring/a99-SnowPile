@@ -1,0 +1,36 @@
+<!-- This page displays the user's personal information and the function of changing the password -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>profile</title>
+     <!-- CSS import -->
+    <link rel="stylesheet"  type="text/css" href="/profile.css">
+
+    <!-- Set font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <section className="userInfo">
+      <h1>Welcome, <%= user.username %>!</h1>
+      <p>Email: <%= user.email %></p>
+      <p>You have <%= tasks.length %> tasks.</p>
+  </section>
+  <section className="backTodo"> <a href="/index.ejs"><b>Go to To-Do List</b></a></section>
+  <section className="changePWD">
+    <h2>Do you want to change your password?</h2>
+    <form action="/change-password" method="POST">
+        <label for="current-password">Current Password:</label>
+        <input type="password" id="current-password" name="currentPassword">
+        
+        <label for="new-password">New Password:</label>
+        <input type="password" id="new-password" name="newPassword">
+        
+        <button type="submit">Change Password</button>
+    </form>
+  </section>
+  </body>
+</html>
