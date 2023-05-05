@@ -45,7 +45,7 @@ app.get('/index',function(req, res) {
   });
 
   app.get('/profile',function(req, res) { 
-    res.render('profile',{user});
+    res.render('profile');
     });
 //app.use(express.static(path.join(__dirname, '../frontend')));
 
@@ -150,17 +150,6 @@ const tasks = [
       category: 'Fitness',
     },
   ];
-
-  const user = {
-    username: "John Doe",
-    email: "john.doe@example.com",
-    tasks: [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 }
-      ]
-  }
-
 
   //for css
   app.use('/public-styles', express.static(path.join(__dirname, 'public-styles'), { type: 'text/css' }));

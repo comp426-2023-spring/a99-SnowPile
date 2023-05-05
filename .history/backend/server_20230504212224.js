@@ -153,12 +153,7 @@ const tasks = [
 
   const user = {
     username: "John Doe",
-    email: "john.doe@example.com",
-    tasks: [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 }
-      ]
+    email: "john.doe@example.com"
   }
 
 
