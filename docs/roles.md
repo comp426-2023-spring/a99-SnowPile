@@ -1,6 +1,7 @@
 **Team assignment**
 
-*Responsibilities*
+*Responsibilities*  
+
 Front End - Sojin and Ziqiao
 - Login pages (Sojin): requiring users to log in to enter the todo list.
 - Registration pages (Sojin): providing users with the ability to register.
