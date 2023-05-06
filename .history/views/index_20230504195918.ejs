@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List App - SnowPile</title>
+    <!-- CSS import -->
+    <link rel="stylesheet" type="text/css" href="/toDoList.css"/>
+
+    <!-- Set font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+  <body>
+    <!-- Greeting -->
+    <section class="greeting">
+      <h2>What's the plan for today?</h2>
+    </section>
+
+    <!-- Link to profile page -->
+    <a href="/profile.ejs">Go to Profile</a>
+
+
+    <!-- New Todo -->
+    <section class="create-todo">
+      <form action="/addTask" method="POST">
+        
+        <label for="taskName">Task Name:</label>
+        <input type="text" placeholder="Please enter your task name" id="taskName" name="taskName" required><br><br>
+
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" name="dueDate" required><br><br>
+
+        <label for="category">Pick a category:</label>
+
+        <div class="category">
+					<label>
+						<input type="radio" name="category" id="category1" value="School" /> 
+						<div>School</div>
+					</label>
+					<label>
+						<input type="radio" name="category" id="category2" value="Personal" />
+						<div>Personal</div>
+					</label>
+                    <label>
+						<input type="radio" name="category" id="category3" value="Work" />
+						<div>Work</div>
+					</label>
+                    <label>
+						<input type="radio" name="category" id="category4" value="Errands" />
+						<div>Errands</div>
+					</label>
+        </div> 
+        <div class="category">
+                    <label>
+						<input type="radio" name="category" id="category5" value="Shopping" />
+						<div>Shopping</div>
+					</label>
+                    <label>
+						<input type="radio" name="category" id="category6" value="Fitness" />
+						<div>Fitness</div>
+					</label>
+                    <label>
+						<input type="radio" name="category" id="category7" value="Not Categoried" />
+						<div>Other</div>
+					</label>
+        </div>		      
+
+        <input type="submit" value="Add Task">
+
+      </form>
+    </section>
+    <!-- Display todo list -->
+    <!-- <section class="todo-list">
+      <h2>YOUR TODO LIST</h2>
+        <% if (tasks.length === 0) { %>
+        <p>No tasks yet!</p>
+        <% } else { %>
+            <table>
+            <thead>
+                <tr>
+                <th>Title</th>
+                <th>Due Date</th>
+                <th>Category</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i<tasks.length;i++) { %>
+                <tr>
+                    <td><%= task[i].title %></td>
+                    <td><%= task[i].dueDate.toDateString() %></td>
+                    <td><%= task[i].category %></td>
+                    <td><button onclick="showEditForm(<%= i %>)">Edit</button></td>
+                    <form id="edit-form-<%= i %>" style="display:none;" action="/editTask/<%= tasks[i]._id %>" method="POST">
+                        <input type="text" name="taskName" value="<%= tasks[i].name %>" required>
+                        <input type="date" name="dueDate" value="<%= tasks[i].due %>" required>
+                        <input type="submit" value="Save">
+                      </form>
+                    <td><button>Delete</button></td>
+                </tr>
+                <% }); %>
+            </tbody>
+            </table>
+            <script>
+                function showEditForm(i) {
+                  $("#edit-form-"+i).toggle();
+                }
+            </script>
+        <% } %>
+
+  -->
+    </section>
+  </body>
+</html>
+
