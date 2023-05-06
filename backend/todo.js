@@ -3,13 +3,14 @@ const router = express.Router();
 const sqlite = require('better-sqlite3');
 const db = new sqlite('../db.sqlite');
 
-router.get('/', (req, res) => {
-  const todos = db.prepare('SELECT * FROM task_list WHERE user_id = ?').all(req.session.userId);
 
-  res.render('../frontend/index.ejs', { todos, currentUser: res.locals.currentUser });
+router.get('/', (req, res) => {
+  const tasks = db.prepare('SELECT * FROM task_list WHERE user_id = ?').all(req.session.userId);
+
+  res.render('../frontend/index.ejs', { tasks, currentUser: res.locals.currentUser });
 });
 
-router.post('/add-task', (req, res) => {
+router.post('/addTask', (req, res) => {
   const { task } = req.body;
 
   db.prepare('INSERT INTO task_list (user_id, task, description, completed) VALUES (?, ?, ?, ?)').run(req.session.userId, task, '', 0);

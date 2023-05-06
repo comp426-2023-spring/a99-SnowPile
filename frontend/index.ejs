@@ -3,7 +3,7 @@
   <head>
     <title>Todo List App - SnowPile</title>
     <!-- CSS import -->
-    <link rel="stylesheet" type="text/css" href="/toDoList.css"/>
+    <link rel="stylesheet"  type="text/css" href="/todolist.css"/>
 
     <!-- Set font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,41 +35,42 @@
         <label for="category">Pick a category:</label>
 
         <div class="category">
-					<label>
-						<input type="radio" name="category" id="category1" value="School" /> 
-						<div>School</div>
-					</label>
-					<label>
-						<input type="radio" name="category" id="category2" value="Personal" />
-						<div>Personal</div>
-					</label>
                     <label>
-						<input type="radio" name="category" id="category3" value="Work" />
-						<div>Work</div>
-					</label>
+                        <input type="radio" name="category" id="category1" value="School" />
+                        <div>School</div>
+                    </label>
                     <label>
-						<input type="radio" name="category" id="category4" value="Errands" />
-						<div>Errands</div>
-					</label>
-        </div> 
+                        <input type="radio" name="category" id="category2" value="Personal" />
+                        <div>Personal</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="category" id="category3" value="Work" />
+                        <div>Work</div>
+                    </label>
+                    <label>
+                        <input type="radio" name="category" id="category4" value="Errands" />
+                        <div>Errands</div>
+                    </label>
+        </div>
         <div class="category">
                     <label>
-						<input type="radio" name="category" id="category5" value="Shopping" />
-						<div>Shopping</div>
-					</label>
+                        <input type="radio" name="category" id="category5" value="Shopping" />
+                        <div>Shopping</div>
+                    </label>
                     <label>
-						<input type="radio" name="category" id="category6" value="Fitness" />
-						<div>Fitness</div>
-					</label>
+                        <input type="radio" name="category" id="category6" value="Fitness" />
+                        <div>Fitness</div>
+                    </label>
                     <label>
-						<input type="radio" name="category" id="category7" value="Not Categoried" />
-						<div>Other</div>
-					</label>
-        </div>		      
+                        <input type="radio" name="category" id="category7" value="Not Categoried" />
+                        <div>Other</div>
+                    </label>
+        </div>
 
         <input type="submit" value="Add Task">
 
       </form>
+
     </section>
     <!-- Display todo list -->
     <section class="todo-list">
@@ -90,9 +91,9 @@
             <tbody>
                 <% for(var i=0; i<tasks.length;i++) { %>
                 <tr>
-                    <td><%= task[i].title %></td>
-                    <td><%= task[i].dueDate.toDateString() %></td>
-                    <td><%= task[i].category %></td>
+                    <td><%= tasks[i].title %></td>
+                    <td><%= tasks[i].dueDate.toDateString() %></td>
+                    <td><%= tasks[i].category %></td>
                     <td><button onclick="showEditForm(<%= i %>)">Edit</button></td>
                     <form id="edit-form-<%= i %>" style="display:none;" action="/editTask/<%= tasks[i]._id %>" method="POST">
                         <input type="text" name="taskName" value="<%= tasks[i].name %>" required>
@@ -101,7 +102,7 @@
                       </form>
                     <td><button>Delete</button></td>
                 </tr>
-                <% }); %>
+                <% }; %>
             </tbody>
             </table>
             <script>
@@ -115,4 +116,3 @@
     </section>
   </body>
 </html>
-
