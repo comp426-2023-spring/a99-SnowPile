@@ -3,6 +3,7 @@ const router = express.Router();
 const sqlite = require('better-sqlite3');
 const db = new sqlite('../db.sqlite');
 
+
 router.get('/', (req, res) => {
   const tasks = db.prepare('SELECT * FROM task_list WHERE user_id = ?').all(req.session.userId);
 
