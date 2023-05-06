@@ -1,4 +1,4 @@
-// Define app using express
+/// Define app using express
 var express = require("express")
 var app = express()
 const sqlite = require('better-sqlite3');
@@ -21,6 +21,7 @@ const SQLiteStore = require('connect-sqlite3')(session);
 
 app.get('/', function(req, res) {
   res.render('login');
+
 });
 
 // parse form data middleware
@@ -37,6 +38,24 @@ app.use('/auth', authRouter);
 app.use('/todo', middlewares.requireLogin, todoRouter);
 app.get('/', (req, res) => {
   res.redirect('/auth/login');
+});
+app.get('/profile.ejs', function(req, res) {
+//    const user = req.body.user
+//    res.render('profile.ejs', {user});
+});
+app.get('/index',function(req, res) {
+  res.render('index', { tasks });
+  });
+app.post('/addTask', function(req, res) {
+    const task_title = req.body.taskName;
+    const task_due_date = req.body.dueDate;
+    const category_id = req.body.category;
+    const user_id = req.session.userId;
+    const task_status = 'Incomplete';
+    const task_description = "none";
+    
+    const stmt = db.prepare(`INSERT INTO task_list (task_title, user_id, task_due_date, task_status, task_description, category_id) VALUES (?, ?, ?, ?, ?, ?)`);
+    stmt.run(task_title, user_id, task_due_date, task_status, task_description, category_id);
 });
 
 //app.use(express.static(path.join(__dirname, '../frontend')));
@@ -118,3 +137,30 @@ app.delete("/app/delete/user/:id", (req, res) => {
 //    res.status(404);
 //});
 // set up routers
+
+
+
+//fake data for testing
+const tasks = [
+    {
+      _id: 1,
+      title: 'Buy groceries',
+      dueDate: new Date('2023-05-10'),
+      category: 'Shopping',
+    },
+    {
+      _id: 2,
+      title: 'Finish project',
+      dueDate: new Date('2023-05-15'),
+      category: 'Work',
+    },
+    {
+      _id: 3,
+      title: 'Go for a run',
+      dueDate: new Date('2023-05-06'),
+      category: 'Fitness',
+    },
+  ];
+
+  //for css
+  app.use('/public-styles', express.static(path.join(__dirname, 'public-styles'), { type: 'text/css' }));
