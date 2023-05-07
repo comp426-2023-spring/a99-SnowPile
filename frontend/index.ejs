@@ -92,7 +92,7 @@
                 <% for(var i=0; i<tasks.length;i++) { %>
                 <tr>
                     <td><%= tasks[i].title %></td>
-                    <td><%= tasks[i].dueDate.toDateString() %></td>
+                    <td><%= tasks[i].dueDate %></td>
                     <td><%= tasks[i].category %></td>
                     <td><button onclick="showEditForm(<%= i %>)">Edit</button></td>
                     <form id="edit-form-<%= i %>" style="display:none;" action="/editTask/<%= tasks[i]._id %>" method="POST">
