@@ -43,18 +43,9 @@ app.get('/profile.ejs', function(req, res) {
 //    const user = req.body.user
 //    res.render('profile.ejs', {user});
 });
-
-
-// 0507 add a fake userid
 app.get('/index',function(req, res) {
-  //add-1
-  const userId=1;
-  // res.render('index', { tasks,userId });
-  const tasks = db.prepare(`SELECT * FROM task_list WHERE user_id=?`).all(userId);
-  res.render('index', { tasks,userId });
+  res.render('index', { tasks });
   });
-
-
 app.post('/addTask', function(req, res) {
     const task_title = req.body.taskName;
     const task_due_date = req.body.dueDate;
@@ -69,8 +60,7 @@ app.post('/addTask', function(req, res) {
     
 });
 app.get('/getTask', function(req, res) {
-// const user_id = req.session.userId;
-const user_id=1;
+const user_id = req.session.userId;
 const tasks = db.prepare(`SELECT * FROM task_list WHERE user_id=?`).all(user_id);
 res.json(tasks);
 });

@@ -49,8 +49,6 @@ app.get('/profile.ejs', function(req, res) {
 app.get('/index',function(req, res) {
   //add-1
   const userId=1;
-  // res.render('index', { tasks,userId });
-  const tasks = db.prepare(`SELECT * FROM task_list WHERE user_id=?`).all(userId);
   res.render('index', { tasks,userId });
   });
 

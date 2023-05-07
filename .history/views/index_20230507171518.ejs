@@ -13,8 +13,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
   <body>
-
-    
     <!-- Greeting -->
     <section class="greeting">
       <h2>What's the plan for today?</h2>
@@ -37,37 +35,37 @@
         <label for="category">Pick a category:</label>
 
         <div class="category">
+					<label>
+						<input type="radio" name="category" id="category1" value="School" /> 
+						<div>School</div>
+					</label>
+					<label>
+						<input type="radio" name="category" id="category2" value="Personal" />
+						<div>Personal</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category1" value="School" />
-                        <div>School</div>
-                    </label>
+						<input type="radio" name="category" id="category3" value="Work" />
+						<div>Work</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category2" value="Personal" />
-                        <div>Personal</div>
-                    </label>
-                    <label>
-                        <input type="radio" name="category" id="category3" value="Work" />
-                        <div>Work</div>
-                    </label>
-                    <label>
-                        <input type="radio" name="category" id="category4" value="Errands" />
-                        <div>Errands</div>
-                    </label>
-        </div>
+						<input type="radio" name="category" id="category4" value="Errands" />
+						<div>Errands</div>
+					</label>
+        </div> 
         <div class="category">
                     <label>
-                        <input type="radio" name="category" id="category5" value="Shopping" />
-                        <div>Shopping</div>
-                    </label>
+						<input type="radio" name="category" id="category5" value="Shopping" />
+						<div>Shopping</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category6" value="Fitness" />
-                        <div>Fitness</div>
-                    </label>
+						<input type="radio" name="category" id="category6" value="Fitness" />
+						<div>Fitness</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category7" value="Not Categoried" />
-                        <div>Other</div>
-                    </label>
-        </div>
+						<input type="radio" name="category" id="category7" value="Not Categoried" />
+						<div>Other</div>
+					</label>
+        </div>		      
 
         <input type="submit" value="Add Task">
 
@@ -111,12 +109,27 @@
                 function showEditForm(i) {
                   $("#edit-form-"+i).toggle();
                 }
+            // add-1: Fetch data from server and render in the view
+            // const userId = <%= userId %>;
+            // fetch(`/getTask?userId=${userId}`)
+            //   .then(response => response.json())
+            //   .then(data => {
+            //     console.log(data);
+            //     // Render the tasks data in the view
+            //     // ...
+            //   })
+            //   .catch(error => console.error(error));
+
             </script>
         <% } %>
-
- 
     </section>
-
-
+    <!-- 0507 -->
+    <!-- <script>
+      fetch('/getTask')
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    </script> -->
   </body>
 </html>
+
