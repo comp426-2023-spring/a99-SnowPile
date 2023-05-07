@@ -3,7 +3,6 @@ var express = require("express")
 var app = express()
 const sqlite = require('better-sqlite3');
 
-
 // Require database SCRIPT file
 //const db = require("./database.js")
 const db = new sqlite('../db.sqlite');
@@ -50,15 +49,21 @@ app.get('/index',function(req, res) {
 app.post('/addTask', function(req, res) {
     const task_title = req.body.taskName;
     const task_due_date = req.body.dueDate;
-    const category_id = req.body.category;
+    const category_id = 1;
     const user_id = req.session.userId;
     const task_status = 'Incomplete';
     const task_description = "none";
     
     const stmt = db.prepare(`INSERT INTO task_list (task_title, user_id, task_due_date, task_status, task_description, category_id) VALUES (?, ?, ?, ?, ?, ?)`);
     stmt.run(task_title, user_id, task_due_date, task_status, task_description, category_id);
+    res.render("/todo");
+    
 });
-
+app.get('/getTask', function(req, res) {
+const user_id = req.session.userId;
+const tasks = db.prepare(`SELECT * FROM task_list WHERE user_id=?`).all(user_id);
+res.json(tasks);
+});
 //app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Route to serve the login page
@@ -165,3 +170,4 @@ const tasks = [
 
   //for css
   app.use('/public-styles', express.static(path.join(__dirname, 'public-styles'), { type: 'text/css' }));
+
