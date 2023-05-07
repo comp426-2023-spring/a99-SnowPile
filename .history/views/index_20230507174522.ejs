@@ -13,8 +13,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
   <body>
-
-    
     <!-- Greeting -->
     <section class="greeting">
       <h2>What's the plan for today?</h2>
@@ -37,37 +35,37 @@
         <label for="category">Pick a category:</label>
 
         <div class="category">
+					<label>
+						<input type="radio" name="category" id="category1" value="School" /> 
+						<div>School</div>
+					</label>
+					<label>
+						<input type="radio" name="category" id="category2" value="Personal" />
+						<div>Personal</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category1" value="School" />
-                        <div>School</div>
-                    </label>
+						<input type="radio" name="category" id="category3" value="Work" />
+						<div>Work</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category2" value="Personal" />
-                        <div>Personal</div>
-                    </label>
-                    <label>
-                        <input type="radio" name="category" id="category3" value="Work" />
-                        <div>Work</div>
-                    </label>
-                    <label>
-                        <input type="radio" name="category" id="category4" value="Errands" />
-                        <div>Errands</div>
-                    </label>
-        </div>
+						<input type="radio" name="category" id="category4" value="Errands" />
+						<div>Errands</div>
+					</label>
+        </div> 
         <div class="category">
                     <label>
-                        <input type="radio" name="category" id="category5" value="Shopping" />
-                        <div>Shopping</div>
-                    </label>
+						<input type="radio" name="category" id="category5" value="Shopping" />
+						<div>Shopping</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category6" value="Fitness" />
-                        <div>Fitness</div>
-                    </label>
+						<input type="radio" name="category" id="category6" value="Fitness" />
+						<div>Fitness</div>
+					</label>
                     <label>
-                        <input type="radio" name="category" id="category7" value="Not Categoried" />
-                        <div>Other</div>
-                    </label>
-        </div>
+						<input type="radio" name="category" id="category7" value="Not Categoried" />
+						<div>Other</div>
+					</label>
+        </div>		      
 
         <input type="submit" value="Add Task">
 
@@ -93,13 +91,26 @@
             <tbody>
                 <% for(var i=0; i<tasks.length;i++) { %>
                 <tr>
-                    <td><%= tasks[i].title %></td>
-                    <td><%= tasks[i].dueDate.toDateString() %></td>
-                    <td><%= tasks[i].category %></td>
+                    <td><%= tasks[i].task_title %></td>
+                    <td><%= tasks[i].task_due_date %></td>
+                    <!-- <td><%= tasks[i].category_id %></td> -->
+
+                    <% var category_id = tasks[i].category_id; %>
+                    <% var category_name = ""; %>
+                    <% if(category_id == 1) { category_name = "Personal"; } 
+                    else if(category_id == 2) { category_name = "Fitness"; } 
+                    else if(category_id == 3) { category_name = "School"; } 
+                    else if(category_id == 4) { category_name = "Others"; } 
+                    else if(category_id == 5) { category_name = "Errands"; } 
+                    else if(category_id == 6) { category_name = "Shopping"; } 
+                    else if(category_id == 7) { category_name = "Work"; } 
+                    else { category_name = "Unknown"; } %> 
+                    <td><%= category_name %></td>
+
                     <td><button onclick="showEditForm(<%= i %>)">Edit</button></td>
                     <form id="edit-form-<%= i %>" style="display:none;" action="/editTask/<%= tasks[i]._id %>" method="POST">
                         <input type="text" name="taskName" value="<%= tasks[i].name %>" required>
-                        <input type="date" name="dueDate" value="<%= tasks[i].due %>" required>
+                        
                         <input type="submit" value="Save">
                       </form>
                     <td><button>Delete</button></td>
@@ -111,12 +122,27 @@
                 function showEditForm(i) {
                   $("#edit-form-"+i).toggle();
                 }
+            // add-1: Fetch data from server and render in the view
+            const userId = <%= userId %>;
+            fetch(`/getTask?userId=${userId}`)
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                // Render the tasks data in the view
+                // ...
+              })
+              .catch(error => console.error(error));
+
             </script>
         <% } %>
-
- 
     </section>
-
-
+    <!-- 0507 -->
+    <!-- <script>
+      fetch('/getTask')
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    </script> -->
   </body>
 </html>
+
