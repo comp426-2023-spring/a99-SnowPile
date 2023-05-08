@@ -22,8 +22,8 @@ Our team has developed a web application for a to-do list. The application allow
 - "express-session": "^1.17.3"
 
 ## Documentation
-
-[WIP]
+Team assignment:
+[a link](https://github.com/comp426-2023-spring/a99-SnowPile/blob/main/docs/roles.md)
 
 ## Demo Video
 
