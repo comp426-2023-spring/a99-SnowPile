@@ -10,7 +10,7 @@
 2. In the root directory, run `npm install`
 3. To test the application, run `npm test`. Testing is complete with the console log message "Port closed"
 4. To run the application run `npm start`
-5. Open localhost:5555 in your browser to interact with the application
+5. Open `localhost:5555` in your browser to interact with the application
 6. To stop the application, type `Ctrl + C`
 
 ## Dependency List
