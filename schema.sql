@@ -12,3 +12,10 @@ CREATE TABLE todos (
   completed BOOLEAN NOT NULL DEFAULT 0,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE interactions (
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  description TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);

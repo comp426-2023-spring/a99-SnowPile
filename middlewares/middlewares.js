@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const sqlite = require('better-sqlite3');
-const db = new sqlite('../db.sqlite');
+const db = new sqlite('./db/database.db');
 
 function hashPassword(password) {
   return bcrypt.hashSync(password, saltRounds);
@@ -15,7 +15,7 @@ function setCurrentUser(req, res, next) {
   // Check if user is authenticated
   if (req.session && req.session.userId) {
     // Set current user
-    const user = db.prepare('SELECT * FROM user WHERE id = ?').get(req.session.userId);
+    const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.session.userId);
     res.locals.currentUser = user;
   } else {
     // Clear current user

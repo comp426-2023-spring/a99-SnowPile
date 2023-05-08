@@ -7,6 +7,24 @@
     <h1>To-Do List</h1>
     <% if (currentUser) { %>
       <p>Welcome, <%= currentUser.username %>!</p>
+      <h2>Account Information</h2>
+      <form action="/auth/update-user" method="POST">
+        <p>WARNING: You must enter your current password or a new password before clicking Update Account!</p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="<%= currentUser.username %>" required><br><br>
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Update Account</button>
+      </form>
+      <form action="/auth/delete-user" method="POST">
+        <p>WARNING: This action is irreversible! Enter your password to delete your account:</p>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Delete Account</button>
+      </form>
+      
+      <hr>
+      <h2>To-Do List</h2>
       <form action="/todo/add-task" method="POST">
         <input type="text" name="task" placeholder="Enter task description" required>
         <button type="submit">Add Task</button>
@@ -23,7 +41,7 @@
         <% }); %>
       </ul>
       <form action="/auth/logout" method="POST">
-        <button type="submit" onclick="location.href='/auth/login'; return false;">Log Out</button>
+        <button type="submit" onclick="console.log('Logout button clicked!')">Log Out</button>
       </form>
     <% } else { %>
       <p>Please log in to view your to-do list.</p>
