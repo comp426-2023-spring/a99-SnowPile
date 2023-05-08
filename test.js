@@ -66,6 +66,8 @@ createTables();
 
 // start server
 const PORT = process.env.PORT || 5555;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-module.exports = app;
+const server = app.listen(PORT, () => console.log(`Server started on port ${PORT} without issues.`));
+setTimeout(() => {
+  server.close();
+  console.log("Port closed");
+}, 2500);
