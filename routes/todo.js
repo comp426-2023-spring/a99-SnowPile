@@ -38,29 +38,4 @@ router.post('/delete-task', (req, res) => {
   res.redirect('/todo');
 });
 
-// router.get('/auth/logout', (req, res, next) => {
-//   console.log('Logout API called');
-//   const userId = req.session.userId;
-//   const description = `User ${user.usern} logged out`;
-//   console.log(description);
-//   const stmt = db.prepare('INSERT INTO interactions (user_id, description) VALUES (?, ?)');
-
-//   try {
-//     req.session.destroy((err) => {
-//       if (err) {
-//         console.log(err);
-//         return next(err);
-//       }
-
-//       stmt.run(userId, description);
-//       res.clearCookie('connect.sid');
-//       console.log('Redirecting to login page');
-//       res.redirect('/auth/login');
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     return next(error);
-//   }
-// });
-
 module.exports = router;
