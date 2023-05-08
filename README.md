@@ -24,7 +24,9 @@ Our team has developed a web application for a to-do list. The application allow
 ## Documentation
 
 [API Endpoints](https://github.com/comp426-2023-spring/a99-SnowPile/blob/main/docs/api-endpoints.md)
+
 [Team assignment](https://github.com/comp426-2023-spring/a99-SnowPile/blob/main/docs/roles.md)
+
 [Meeting logs](https://github.com/comp426-2023-spring/a99-SnowPile/blob/main/docs/meetings.md)
 
 ## Demo Video
