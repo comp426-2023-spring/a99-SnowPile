@@ -24,6 +24,8 @@ Our team, SnowPile, has developed a web application for a to-do list. The applic
 
 ## Documentation
 
+The documentation for this application can be found at the following:
+
 [API Endpoints](https://github.com/comp426-2023-spring/a99-SnowPile/blob/main/docs/api-endpoints.md)
 
 [Team assignment](https://github.com/comp426-2023-spring/a99-SnowPile/blob/main/docs/roles.md)
@@ -32,7 +34,7 @@ Our team, SnowPile, has developed a web application for a to-do list. The applic
 
 ## Demo Video
 
-[Demo Video](https://www.youtube.com/watch?v=PQ6qNqVRFZY&t=17s)
+The demo video of the application can be found [here](https://www.youtube.com/watch?v=PQ6qNqVRFZY&t=17s)
 
 ## Future Plans
 
