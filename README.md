@@ -28,7 +28,7 @@
 
 ## Demo Video
 
-[WIP]
+[[WIP]](https://www.youtube.com/watch?v=PQ6qNqVRFZY&t=17s)
 
 ## Future Plans
 
