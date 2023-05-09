@@ -28,7 +28,7 @@
 
 ## Demo Video
 
-[[WIP]](https://www.youtube.com/watch?v=PQ6qNqVRFZY&t=17s)
+A demo video of the application can be found [here](https://www.youtube.com/watch?v=PQ6qNqVRFZY&t=17s).
 
 ## Future Plans
 
