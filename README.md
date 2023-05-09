@@ -38,4 +38,8 @@ The demo video of the application can be found [here](https://www.youtube.com/wa
 
 ## Future Plans
 
-As a future direction, we plan to enhance the functionality of our to-do list web application by allowing users to view more details about their tasks. Specifically, we aim to incorporate features such as categorization, task descriptions, and due dates to help users better organize their to-do lists. We look forward to continuing to develop and improve our application to better meet the needs of users.
+As a future direction, our team plans to enhance the functionality of our to-do list web application. Specifically, we aim to incorporate features such as categorization, task descriptions, and due dates to help users better organize their to-do lists. This will allow users to view more details about their tasks and manage them more effectively.
+
+In addition, we plan to incorporate more advanced task management features, such as the ability to set reminders and alerts for important tasks. This will help users stay on track and complete tasks in a timely manner. Furthermore, we plan to implement a collaboration feature that allows users to share tasks or projects with others and work together more efficiently. 
+
+We believe that these enhancements will make our application even more useful and user-friendly, and we look forward to implementing them in the near future.
