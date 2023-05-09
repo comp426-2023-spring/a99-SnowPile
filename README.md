@@ -31,7 +31,7 @@ Our team, SnowPile, has developed a web application for a to-do list. The applic
 
 ## Demo Video
 
-[WIP]
+[Demo Video](https://www.youtube.com/watch?v=PQ6qNqVRFZY&t=17s)
 
 ## Future Plans
 
